@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:entity",
+  "random_sequence": "minecraft:entities/endermite",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_nugget",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Moneda de bronce",
+                "color": "red",
+                "bold": true
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:lore": [
+                  {
+                    "text": "Valor: 1",
+                    "color": "gray",
+                    "italic": false,
+                    "bold": true
+                  }
+                ],
+                "minecraft:custom_data": {
+                  "economiarpg": {
+                    "type": "coin",
+                    "currency": "bronze",
+                    "value": 1
+                  }
+                },
+                "minecraft:rarity": "common"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
