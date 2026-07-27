@@ -94,7 +94,7 @@ Las monedas deben ser completamente independientes del loot vanilla.
 | Shulker | 🥈 Plata | 2 | 20 |
 | Vex | 🥉 Bronce | 1 | 1 |
 | Evoker | 🥇 Oro | 1 | 100 |
-| Warden | 🥇 Oro | 2 | 200 |
+| Warden | 🥇 Oro | 8 | 800 |
 | Wither | 🥇 Oro | 10 | 1000 |
 | Ender Dragon | 🥇 Oro | 20 | 2000 |
 | Zombie Villager | 🥉 Bronce | 2 | 2 |
