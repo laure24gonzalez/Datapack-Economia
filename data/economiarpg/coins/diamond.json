@@ -1,0 +1,13 @@
+{
+  "id": "diamond_coin",
+  "item": "minecraft:diamond",
+  "display_name": "Moneda de diamante",
+  "currency": "diamond",
+  "value": 10000,
+  "rarity": "epic",
+  "color": "aqua",
+  "lore": [
+    "Valor: 10000"
+  ],
+  "item_model": "economiarpg:diamond_coin"
+}

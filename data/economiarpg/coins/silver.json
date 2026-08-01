@@ -1,0 +1,13 @@
+{
+  "id": "silver_coin",
+  "item": "minecraft:iron_nugget",
+  "display_name": "Moneda de plata",
+  "currency": "silver",
+  "value": 10,
+  "rarity": "rare",
+  "color": "aqua",
+  "lore": [
+    "Valor: 10"
+  ],
+  "item_model": "economiarpg:silver_coin"
+}

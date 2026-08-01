@@ -49,16 +49,13 @@
               "count": 4
             },
             {
-              "function": "minecraft:set_name",
-              "name": {
-                "text": "Moneda de bronce",
-                "color": "red",
-                "bold": true
-              }
-            },
-            {
               "function": "minecraft:set_components",
               "components": {
+                "minecraft:custom_name": {
+                  "text": "Moneda de bronce",
+                  "color": "red",
+                  "bold": true
+                },
                 "minecraft:lore": [
                   {
                     "text": "Valor: 1",
@@ -70,6 +67,7 @@
                 "minecraft:custom_data": {
                   "economiarpg": {
                     "type": "coin",
+                    "id": "bronze_coin",
                     "currency": "bronze",
                     "value": 1
                   }

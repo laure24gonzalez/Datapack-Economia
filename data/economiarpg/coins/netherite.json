@@ -1,0 +1,13 @@
+{
+  "id": "netherite_coin",
+  "item": "minecraft:netherite_ingot",
+  "display_name": "Moneda de netherita",
+  "currency": "netherite",
+  "value": 100000,
+  "rarity": "legendary",
+  "color": "dark_purple",
+  "lore": [
+    "Valor: 100000"
+  ],
+  "item_model": "economiarpg:netherite_coin"
+}

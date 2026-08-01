@@ -1,0 +1,72 @@
+{
+  "bronze_coin": {
+    "id": "bronze_coin",
+    "item": "minecraft:copper_nugget",
+    "display_name": "Moneda de bronce",
+    "currency": "bronze",
+    "value": 1,
+    "rarity": "common",
+    "color": "red",
+    "item_model": "economiarpg:bronze_coin"
+  },
+  "diamond_coin": {
+    "id": "diamond_coin",
+    "item": "minecraft:diamond",
+    "display_name": "Moneda de diamante",
+    "currency": "diamond",
+    "value": 10000,
+    "rarity": "epic",
+    "color": "aqua",
+    "item_model": "economiarpg:diamond_coin"
+  },
+  "emerald_coin": {
+    "id": "emerald_coin",
+    "item": "minecraft:emerald",
+    "display_name": "Moneda de esmeralda",
+    "currency": "emerald",
+    "value": 1000,
+    "rarity": "epic",
+    "color": "dark_green",
+    "item_model": "economiarpg:emerald_coin"
+  },
+  "gold_coin": {
+    "id": "gold_coin",
+    "item": "minecraft:gold_nugget",
+    "display_name": "Moneda de oro",
+    "currency": "gold",
+    "value": 100,
+    "rarity": "epic",
+    "color": "gold",
+    "item_model": "economiarpg:gold_coin"
+  },
+  "netherite_coin": {
+    "id": "netherite_coin",
+    "item": "minecraft:netherite_ingot",
+    "display_name": "Moneda de netherita",
+    "currency": "netherite",
+    "value": 100000,
+    "rarity": "legendary",
+    "color": "dark_purple",
+    "item_model": "economiarpg:netherite_coin"
+  },
+  "ruby_coin": {
+    "id": "ruby_coin",
+    "item": "minecraft:emerald",
+    "display_name": "Moneda de rubí",
+    "currency": "ruby",
+    "value": 1000000,
+    "rarity": "legendary",
+    "color": "red",
+    "item_model": "economiarpg:ruby_coin"
+  },
+  "silver_coin": {
+    "id": "silver_coin",
+    "item": "minecraft:iron_nugget",
+    "display_name": "Moneda de plata",
+    "currency": "silver",
+    "value": 10,
+    "rarity": "rare",
+    "color": "aqua",
+    "item_model": "economiarpg:silver_coin"
+  }
+}

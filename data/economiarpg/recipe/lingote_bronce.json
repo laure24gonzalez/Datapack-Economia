@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_nugget"
+    }
+  },
+  "result": {
+    "id": "minecraft:copper_ingot",
+    "count": 1,
+    "components": {
+      "minecraft:custom_name": {
+        "text": "Lingote de bronce",
+        "color": "gold",
+        "bold": true,
+        "italic": false
+      },
+      "minecraft:lore": [
+        {
+          "text": "Valor: 9",
+          "color": "gray",
+          "italic": false,
+          "bold": true
+        }
+      ],
+      "minecraft:custom_data": {
+        "economiarpg": {
+          "type": "ingot",
+          "currency": "bronze",
+          "value": 9
+        }
+      },
+      "minecraft:rarity": "common"
+    }
+  }
+}

@@ -171,6 +171,7 @@
       "rolls": 1.0
     },
     {
+      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "conditions": [
         {
@@ -180,22 +181,20 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "minecraft:copper_nugget",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
-              "function": "minecraft:set_name",
-              "name": {
-                "text": "Moneda de bronce",
-                "color": "red",
-                "bold": true
-              }
-            },
-            {
               "function": "minecraft:set_components",
               "components": {
+                "minecraft:custom_name": {
+                  "text": "Moneda de bronce",
+                  "color": "red",
+                  "bold": true
+                },
                 "minecraft:lore": [
                   {
                     "text": "Valor: 1",
@@ -207,6 +206,7 @@
                 "minecraft:custom_data": {
                   "economiarpg": {
                     "type": "coin",
+                    "id": "bronze_coin",
                     "currency": "bronze",
                     "value": 1
                   }
@@ -214,11 +214,9 @@
                 "minecraft:rarity": "common"
               }
             }
-          ],
-          "name": "minecraft:copper_nugget"
+          ]
         }
-      ],
-      "rolls": 1.0
+      ]
     }
   ],
   "random_sequence": "minecraft:entities/zombie"

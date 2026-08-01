@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "III",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "id": "minecraft:copper_block",
+    "count": 1,
+    "components": {
+      "minecraft:custom_name": {
+        "text": "Bloque de bronce",
+        "color": "gold",
+        "bold": true,
+        "italic": false
+      },
+      "minecraft:lore": [
+        {
+          "text": "Valor: 81",
+          "color": "gray",
+          "italic": false,
+          "bold": true
+        }
+      ],
+      "minecraft:custom_data": {
+        "economiarpg": {
+          "type": "block",
+          "currency": "bronze",
+          "value": 81
+        }
+      },
+      "minecraft:rarity": "common"
+    }
+  }
+}

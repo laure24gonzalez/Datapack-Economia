@@ -1,0 +1,13 @@
+{
+  "id": "emerald_coin",
+  "item": "minecraft:emerald",
+  "display_name": "Moneda de esmeralda",
+  "currency": "emerald",
+  "value": 1000,
+  "rarity": "epic",
+  "color": "dark_green",
+  "lore": [
+    "Valor: 1000"
+  ],
+  "item_model": "economiarpg:emerald_coin"
+}

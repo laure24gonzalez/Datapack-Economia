@@ -1,0 +1,73 @@
+{
+  "shops": {
+    "blacksmith": {
+      "name": "Herrero",
+      "description": "Armaduras legendarias",
+      "offers": [
+        {
+          "id": "netherite_armor_set",
+          "item": "minecraft:netherite_helmet",
+          "price": {
+            "coin_id": "netherite_coin",
+            "amount": 48
+          },
+          "category": "armor"
+        }
+      ]
+    },
+    "armorer": {
+      "name": "Armero",
+      "description": "Armas legendarias",
+      "offers": [
+        {
+          "id": "legendary_sword",
+          "item": "minecraft:netherite_sword",
+          "price": {
+            "coin_id": "netherite_coin",
+            "amount": 15
+          },
+          "category": "weapon"
+        }
+      ]
+    },
+    "tools": {
+      "name": "Herramientas",
+      "description": "Picos, hachas, palas y azadas",
+      "offers": [
+        {
+          "id": "legendary_pickaxe",
+          "item": "minecraft:netherite_pickaxe",
+          "price": {
+            "coin_id": "netherite_coin",
+            "amount": 15
+          },
+          "category": "tool"
+        }
+      ]
+    },
+    "utilities": {
+      "name": "Utilidades",
+      "description": "Objetos especiales",
+      "offers": [
+        {
+          "id": "totem_of_undying",
+          "item": "minecraft:totem_of_undying",
+          "price": {
+            "coin_id": "diamond_coin",
+            "amount": 3
+          },
+          "category": "special"
+        },
+        {
+          "id": "end_crystal",
+          "item": "minecraft:end_crystal",
+          "price": {
+            "coin_id": "emerald_coin",
+            "amount": 5
+          },
+          "category": "special"
+        }
+      ]
+    }
+  }
+}

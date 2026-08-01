@@ -1,175 +1,83 @@
 # EconomiaRPG
 
-## Arquitectura del sistema
+## Nuevo enfoque: economía basada en objetos físicos
 
-Este datapack usa únicamente funciones de datapack vanilla y scoreboards permanentes. No se crean comandos personalizados reales ni plugins.
+Se abandonó el sistema de wallet y los comandos simulados. La economía ahora se basa en objetos físicos personalizados que el jugador puede recoger, almacenar, intercambiar y convertir.
 
-### Estructura base
+### Qué se mantiene activo
 
-- data/minecraft/tags/functions/
-- data/lospibes/functions/
-  - economia/
-  - stats/
-  - utils/
+- Los loot tables de mobs siguen intactos.
+- Los drops actuales de monedas no se modifican.
+- La parte de monedas en loot tables sigue funcionando igual que antes.
 
-### Scoreboards permanentes
+### Estructura actual del datapack
 
-- pepitas: saldo principal del servidor.
-- kills: cantidad de asesinatos del jugador.
-- muertes: cantidad de veces que murió el jugador.
-- playtime: tiempo jugado del jugador.
-- nivel: progreso o nivel del jugador.
-- pagar: trigger para iniciar un pago.
-- saldo: trigger para consultar saldo.
-- transferir: trigger para transferir dinero.
-- lospibes.temp y lospibes.temp2: scoreboards internos temporales.
+- data/minecraft/loot_table/entities/ : loot tables de mobs, sin modificar.
+- data/minecraft/tags/function/ : tags de carga y tick.
+- data/economiarpg/function/ : funciones mínimas de carga y prueba.
+- data/economiarpg/recipe/ : recetas de conversión entre monedas físicas.
 
-## Sistema de moneda: Pepitas
+### Objetos personalizados
 
-La moneda del servidor se llama Pepitas.
+La economía se organiza con tres niveles de objetos físicos:
 
-El saldo de cada jugador se guarda en el objective definitivo `economiarpg.money`.
+1. Moneda
+2. Lingote comercial
+3. Bloque comercial
 
-Este objective es el que se usará para:
-- sidebar personalizada,
-- tiendas,
-- misiones,
-- recompensas,
-- rangos,
-- y futuras integraciones.
+Conversiones:
 
-Ejemplo:
-- Laure: `economiarpg.money = 1250`
+- 9 monedas = 1 lingote comercial
+- 9 lingotes comerciales = 1 bloque comercial
+- 1 lingote comercial = 9 monedas
+- 1 bloque comercial = 9 lingotes comerciales
 
-### Funciones implementadas en la wallet actual
+### Identificación interna
 
-- consultar saldo
-- agregar pepitas
-- quitar pepitas
-- transferir pepitas entre jugadores
-- validar saldo suficiente
-- evitar valores negativos
-- mostrar mensajes claros
+Los objetos van a ser realmente personalizados mediante componentes de Minecraft 1.21.11, como `custom_data`.
 
-## Sistema de estadísticas
+Esto permite que:
 
-Los nombres de los objetivos son fijos y deben mantenerse así para compatibilidad futura con sidebar, misiones y tiendas:
+- una pepita vanilla no funcione como moneda,
+- un lingote vanilla no funcione como lingote comercial,
+- un bloque vanilla no funcione como bloque comercial.
 
-- `kills`
-- `muertes`
-- `playtime`
-- `nivel`
+### Objetos previstos
 
-## Sistema de interacción compatible con datapack vanilla
+- Pepita: "Pepita de moneda"
+- Lingote: "Lingote de moneda"
+- Bloque: "Bloque de moneda"
 
-Un datapack vanilla no puede registrar comandos propios como `/dinero`, `/pagar` o `/tienda`.
+### Compatibilidad futura
 
-La forma compatible es:
+La idea es dejar el sistema listo para que en el futuro pueda usarse con:
 
-1. Usar `/trigger` cuando sea posible.
-2. Usar `/function` para acciones directas.
-3. Usar libros, botones o menús interactivos si se quiere una experiencia más cómoda.
+- resource pack,
+- textos personalizados,
+- lore,
+- identificadores internos,
+- recetas de intercambio,
+- comerciantes,
+- tiendas.
 
-### Entrada recomendada
+## Estado del proyecto
 
-- `/function lospibes:economia/saldo`
-- `/function lospibes:economia/pagar`
-- `/function lospibes:economia/agregar_pepitas`
-- `/function lospibes:economia/quitar_pepitas`
-- `/trigger saldo`
-- `/trigger pagar`
+### Activo
 
-## Archivos principales
+- Loot tables de mobs
+- Drops actuales de monedas
+- Carga base del datapack
+- Recetas de conversión físicas
 
-- data/lospibes/functions/load.mcfunction
-- data/lospibes/functions/economia/crear_scoreboards.mcfunction
-- data/lospibes/functions/economia/agregar_pepitas.mcfunction
-- data/lospibes/functions/economia/quitar_pepitas.mcfunction
-- data/lospibes/functions/economia/pagar.mcfunction
-- data/lospibes/functions/economia/saldo.mcfunction
-- data/lospibes/functions/stats/kills.mcfunction
-- data/lospibes/functions/stats/playtime.mcfunction
-- data/lospibes/functions/utils/mensajes.mcfunction
-- data/lospibes/functions/utils/validaciones.mcfunction
+### Obsoleto y retirado
+
+- Sistema de wallet
+- Funciones de saldo por comandos
+- Comandos tipo `/dinero`, `/pagar`, `/billetera`, etc.
 
 ## Notas de diseño
 
-- No se usan comandos inexistentes ni plugins.
-- Todo funciona como datapack vanilla.
-- Se deja preparado para una sidebar futura.
-- Los nombres de los scoreboards son permanentes y claros.
-
-## Estilo corto y fácil de recordar
-
-El flujo pensado para el jugador es muy simple:
-
-- /function economiarpg:ver
-- /function economiarpg:guardar
-- /function economiarpg:sacar
-- /function economiarpg:pagar
-
-Si luego quisieras un comando tipo /billetera guardar, eso se haría desde un plugin o un servidor con comandos personalizados, no desde un datapack puro.
-
-✅ Fase 3 - Comerciantes
-
-Aldeanos modificados que acepten únicamente las monedas.
-
-No usar esmeraldas.
-
-✅ Fase 4 - Tiendas
-
-Comprar:
-
-Herramientas
-Comida
-Armaduras
-Objetos especiales
-
-Pagando con monedas.
-
-✅ Fase 5 - Misiones
-
-Las dejamos para después.
-
-No implementarlas todavía.
-
-✅ Fase 6 - Trabajos
-
-También para más adelante.
-
-Por ejemplo:
-
-Minero
-Leñador
-Pescador
-Cazador
-✅ Fase 7 - Expansiones
-
-Cuando todo funcione:
-
-Banco con interfaz.
-Cajeros automáticos.
-Intereses.
-Casas de subastas.
-Recompensas diarias.
-Jefes personalizados.
-Eventos.
-Economía entre jugadores.
-Impuestos (si alguna vez te interesa).
-Estadísticas.
-Lo que cambiaría ahora
-
-Después de todo lo que descubrimos con las loot tables y el sistema de monedas, yo reorganizaría el proyecto así:
-
-Versión 1.0
-✅ Monedas.
-✅ Drops de mobs.
-✅ Loot vanilla conservado.
-✅ Banco.
-✅ Comerciantes.
-Versión 1.1
-Misiones.
-Versión 1.2
-Trabajos.
-Versión 1.3
-Economía avanzada.
+- No se va a modificar el sistema de loot tables existente.
+- No se van a cambiar los drops actuales.
+- El sistema se mantiene limpio y orientado a objetos físicos.
+- La economía podrá evolucionar hacia tiendas y comerciantes sin depender de scoreboards o comandos simulados.

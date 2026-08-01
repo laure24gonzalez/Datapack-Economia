@@ -1,0 +1,13 @@
+{
+  "id": "gold_coin",
+  "item": "minecraft:gold_nugget",
+  "display_name": "Moneda de oro",
+  "currency": "gold",
+  "value": 100,
+  "rarity": "epic",
+  "color": "gold",
+  "lore": [
+    "Valor: 100"
+  ],
+  "item_model": "economiarpg:gold_coin"
+}

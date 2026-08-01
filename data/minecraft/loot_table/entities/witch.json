@@ -204,16 +204,13 @@
               "count": 2
             },
             {
-              "function": "minecraft:set_name",
-              "name": {
-                "text": "Moneda de plata",
-                "color": "aqua",
-                "bold": true
-              }
-            },
-            {
               "function": "minecraft:set_components",
               "components": {
+                "minecraft:custom_name": {
+                  "text": "Moneda de plata",
+                  "color": "aqua",
+                  "bold": true
+                },
                 "minecraft:lore": [
                   {
                     "text": "Valor: 10",
@@ -225,6 +222,7 @@
                 "minecraft:custom_data": {
                   "economiarpg": {
                     "type": "coin",
+                    "id": "silver_coin",
                     "currency": "silver",
                     "value": 10
                   }

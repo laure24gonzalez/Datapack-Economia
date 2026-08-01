@@ -1,1 +1,0 @@
-function economiarpg:wallet/guardar

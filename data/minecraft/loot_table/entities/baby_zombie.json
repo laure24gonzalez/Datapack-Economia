@@ -12,35 +12,6 @@
             {
               "function": "minecraft:set_count",
               "count": 4
-            },
-            {
-              "function": "minecraft:set_name",
-              "name": {
-                "text": "Moneda de bronce",
-                "color": "red",
-                "bold": true
-              }
-            },
-            {
-              "function": "minecraft:set_components",
-              "components": {
-                "minecraft:lore": [
-                  {
-                    "text": "Valor: 1",
-                    "color": "gray",
-                    "italic": false,
-                    "bold": true
-                  }
-                ],
-                "minecraft:custom_data": {
-                  "economiarpg": {
-                    "type": "coin",
-                    "currency": "bronze",
-                    "value": 1
-                  }
-                },
-                "minecraft:rarity": "common"
-              }
             }
           ]
         }
@@ -140,6 +111,48 @@
               "condition": "minecraft:random_chance_with_looting",
               "chance": 0.025,
               "looting_multiplier": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_nugget",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_nugget",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 4
             }
           ]
         }

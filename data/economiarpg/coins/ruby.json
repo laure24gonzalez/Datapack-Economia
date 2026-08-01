@@ -1,0 +1,13 @@
+{
+  "id": "ruby_coin",
+  "item": "minecraft:emerald",
+  "display_name": "Moneda de rubí",
+  "currency": "ruby",
+  "value": 1000000,
+  "rarity": "legendary",
+  "color": "red",
+  "lore": [
+    "Valor: 1000000"
+  ],
+  "item_model": "economiarpg:ruby_coin"
+}

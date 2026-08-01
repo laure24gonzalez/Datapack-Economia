@@ -1,0 +1,1 @@
+give @s minecraft:copper_ingot[minecraft:custom_name={"text":"Lingote de bronce","color":"red","bold":true,"italic":false},minecraft:lore=[{"text":"Valor: 9","color":"gray","bold":true,"italic":false}],minecraft:custom_data={economiarpg:{type:"ingot",currency:"bronze",value:9}},minecraft:rarity=common] 1

@@ -29,16 +29,13 @@
               "count": 8
             },
             {
-              "function": "minecraft:set_name",
-              "name": {
-                "text": "Moneda de oro",
-                "color": "gold",
-                "bold": true
-              }
-            },
-            {
               "function": "minecraft:set_components",
               "components": {
+                "minecraft:custom_name": {
+                  "text": "Moneda de oro",
+                  "color": "gold",
+                  "bold": true
+                },
                 "minecraft:lore": [
                   {
                     "text": "Valor: 100",
@@ -50,6 +47,7 @@
                 "minecraft:custom_data": {
                   "economiarpg": {
                     "type": "coin",
+                    "id": "gold_coin",
                     "currency": "gold",
                     "value": 100
                   }
