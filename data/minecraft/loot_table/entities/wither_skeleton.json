@@ -127,7 +127,8 @@
                     "value": 10
                   }
                 },
-                "minecraft:rarity": "rare"
+                "minecraft:rarity": "rare",
+                "minecraft:custom_model_data": 7
               }
             }
           ]

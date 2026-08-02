@@ -1,0 +1,1 @@
+give @p minecraft:copper_nugget{display:{Name:"{\"text\":\"Moneda de diamante\",\"color\":\"aqua\",\"bold\":true}",Lore:["{\"text\":\"Valor: 10000\",\"color\":\"gray\",\"italic\":false,\"bold\":true}"]},minecraft:custom_data:{economiarpg:{type:"coin",id:"diamond_coin",currency:"diamond",value:10000}},rarity:"epic",CustomModelData:3} 1

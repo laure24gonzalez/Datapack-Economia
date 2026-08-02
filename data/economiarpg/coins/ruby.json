@@ -1,6 +1,7 @@
 {
   "id": "ruby_coin",
-  "item": "minecraft:emerald",
+  "item": "minecraft:copper_nugget",
+  "model_data": 5,
   "display_name": "Moneda de rubí",
   "currency": "ruby",
   "value": 1000000,

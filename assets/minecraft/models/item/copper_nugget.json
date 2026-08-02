@@ -1,6 +1,38 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "economiarpg:item/bronze_coin"
-  }
+    "layer0": "minecraft:item/copper_nugget"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "economiarpg:item/bronze_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "economiarpg:item/emerald_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3
+      },
+      "model": "economiarpg:item/diamond_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4
+      },
+      "model": "economiarpg:item/netherite_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5
+      },
+      "model": "economiarpg:item/ruby_coin"
+    }
+  ]
 }

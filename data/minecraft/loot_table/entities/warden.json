@@ -52,7 +52,8 @@
                     "value": 100
                   }
                 },
-                "minecraft:rarity": "epic"
+                "minecraft:rarity": "epic",
+                "minecraft:custom_model_data": 6
               }
             }
           ]

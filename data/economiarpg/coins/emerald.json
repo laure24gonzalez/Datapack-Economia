@@ -1,6 +1,7 @@
 {
   "id": "emerald_coin",
-  "item": "minecraft:emerald",
+  "item": "minecraft:copper_nugget",
+  "model_data": 2,
   "display_name": "Moneda de esmeralda",
   "currency": "emerald",
   "value": 1000,

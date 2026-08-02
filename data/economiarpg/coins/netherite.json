@@ -1,6 +1,7 @@
 {
   "id": "netherite_coin",
-  "item": "minecraft:netherite_ingot",
+  "item": "minecraft:copper_nugget",
+  "model_data": 4,
   "display_name": "Moneda de netherita",
   "currency": "netherite",
   "value": 100000,

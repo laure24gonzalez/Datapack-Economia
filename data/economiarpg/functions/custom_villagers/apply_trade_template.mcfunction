@@ -1,0 +1,1 @@
+# apply trade template

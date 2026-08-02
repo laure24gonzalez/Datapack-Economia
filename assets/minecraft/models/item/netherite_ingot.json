@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "economiarpg:item/netherite_coin"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 5
+      },
+      "model": "economiarpg:item/netherite_coin"
+    }
+  ]
 }

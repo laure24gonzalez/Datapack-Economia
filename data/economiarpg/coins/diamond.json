@@ -1,6 +1,7 @@
 {
   "id": "diamond_coin",
-  "item": "minecraft:diamond",
+  "item": "minecraft:copper_nugget",
+  "model_data": 3,
   "display_name": "Moneda de diamante",
   "currency": "diamond",
   "value": 10000,

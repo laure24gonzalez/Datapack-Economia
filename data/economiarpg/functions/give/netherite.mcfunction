@@ -1,0 +1,1 @@
+give @p minecraft:copper_nugget{display:{Name:"{\"text\":\"Moneda de netherita\",\"color\":\"dark_purple\",\"bold\":true}",Lore:["{\"text\":\"Valor: 100000\",\"color\":\"gray\",\"italic\":false,\"bold\":true}"]},minecraft:custom_data:{economiarpg:{type:"coin",id:"netherite_coin",currency:"netherite",value:100000}},rarity:"legendary",CustomModelData:4} 1

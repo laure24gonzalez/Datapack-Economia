@@ -1,6 +1,7 @@
 {
   "id": "bronze_coin",
   "item": "minecraft:copper_nugget",
+  "model_data": 1,
   "display_name": "Moneda de bronce",
   "currency": "bronze",
   "value": 1,

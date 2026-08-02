@@ -1,0 +1,37 @@
+Cambios del 2026-08-02 - Texturas/Items de monedas
+
+Resumen:
+- Añadido soporte para campo `model_data` en los JSON de monedas.
+- Cambiados algunos `item` de monedas para usar `minecraft:copper_nugget` y asignar `model_data` explícito.
+
+Motivo:
+- Evitar usar objetos vanilla inesperados (p.ej. esmeralda, diamante) como el ítem base de las monedas.
+- Usar `copper_nugget` con distintos `CustomModelData` para representar distintas texturas.
+
+Detalles técnicos:
+- Archivo modificado: `scripts/apply_mob_loot.py`
+  - `build_model_data_map` ahora respeta `model_data` en las definiciones cuando está presente.
+  - `write_help_function` fue añadida para generar `data/economiarpg/function/help.mcfunction`.
+  - Se ajustó `write_resource_pack_assets` para preferir la textura de moneda como `layer0` del modelo base.
+
+- Archivos de monedas actualizados (se les añadió `model_data` y se cambió `item` donde aplica):
+  - `data/economiarpg/coins/bronze.json` -> `model_data`: 1
+  - `data/economiarpg/coins/emerald.json` -> `item`: minecraft:copper_nugget, `model_data`: 2
+  - `data/economiarpg/coins/diamond.json` -> `item`: minecraft:copper_nugget, `model_data`: 3
+  - `data/economiarpg/coins/netherite.json` -> `item`: minecraft:copper_nugget, `model_data`: 4
+  - `data/economiarpg/coins/ruby.json` -> `item`: minecraft:copper_nugget, `model_data`: 5
+
+Pasos para revertir (si falla):
+1) Reemplazar los archivos modificados por la versión anterior desde git: `git checkout -- <ruta>`
+2) O eliminar las líneas `"model_data": N` de los JSON de monedas para volver al mapeo automático.
+3) Regenerar el resource pack: `python scripts/build_resource_pack.py` o `python scripts/apply_mob_loot.py --resource-pack-only`
+
+Notas:
+- No se han modificado `data/minecraft/loot_table/*` en este cambio.
+- Las monedas siguen llevando `minecraft:custom_data` con `economiarpg` para que tradeos o funciones detecten la moneda además del `CustomModelData`.
+
+Registro de acciones realizadas:
+- Ejecutado: `python scripts/apply_mob_loot.py --resource-pack-only`
+- Copiado: `resource_pack.zip` -> `%APPDATA%\\.minecraft\\resourcepacks\\EconomiaRPG.zip`
+
+Fin del registro

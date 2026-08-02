@@ -2,4 +2,5 @@
 # Registra objetivos y funciones iniciales.
 
 scoreboard objectives add economiarpg_trade dummy
-say EconomíaRPG cargado
+function economiarpg:debug/reload_message
+function economiarpg:debug

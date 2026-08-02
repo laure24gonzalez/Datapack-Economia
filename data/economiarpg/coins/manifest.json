@@ -11,7 +11,7 @@
   },
   "diamond_coin": {
     "id": "diamond_coin",
-    "item": "minecraft:diamond",
+    "item": "minecraft:copper_nugget",
     "display_name": "Moneda de diamante",
     "currency": "diamond",
     "value": 10000,
@@ -21,7 +21,7 @@
   },
   "emerald_coin": {
     "id": "emerald_coin",
-    "item": "minecraft:emerald",
+    "item": "minecraft:copper_nugget",
     "display_name": "Moneda de esmeralda",
     "currency": "emerald",
     "value": 1000,
@@ -41,7 +41,7 @@
   },
   "netherite_coin": {
     "id": "netherite_coin",
-    "item": "minecraft:netherite_ingot",
+    "item": "minecraft:copper_nugget",
     "display_name": "Moneda de netherita",
     "currency": "netherite",
     "value": 100000,
@@ -51,7 +51,7 @@
   },
   "ruby_coin": {
     "id": "ruby_coin",
-    "item": "minecraft:emerald",
+    "item": "minecraft:copper_nugget",
     "display_name": "Moneda de rubí",
     "currency": "ruby",
     "value": 1000000,

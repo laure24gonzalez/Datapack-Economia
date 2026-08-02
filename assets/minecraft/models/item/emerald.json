@@ -2,5 +2,19 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "economiarpg:item/emerald_coin"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 3
+      },
+      "model": "economiarpg:item/emerald_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 6
+      },
+      "model": "economiarpg:item/ruby_coin"
+    }
+  ]
 }

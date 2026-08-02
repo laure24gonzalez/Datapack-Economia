@@ -184,7 +184,8 @@
                     "value": 1
                   }
                 },
-                "minecraft:rarity": "common"
+                "minecraft:rarity": "common",
+                "minecraft:custom_model_data": 1
               }
             }
           ]

@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "economiarpg:item/diamond_coin"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "economiarpg:item/diamond_coin"
+    }
+  ]
 }

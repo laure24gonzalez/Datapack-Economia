@@ -1,0 +1,1 @@
+give @p minecraft:gold_nugget{display:{Name:"{\"text\":\"Moneda de oro\",\"color\":\"gold\",\"bold\":true}",Lore:["{\"text\":\"Valor: 100\",\"color\":\"gray\",\"italic\":false,\"bold\":true}"]},minecraft:custom_data:{economiarpg:{type:"coin",id:"gold_coin",currency:"gold",value:100}},rarity:"epic",CustomModelData:6} 1

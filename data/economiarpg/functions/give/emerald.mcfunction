@@ -1,0 +1,1 @@
+give @p minecraft:copper_nugget{display:{Name:"{\"text\":\"Moneda de esmeralda\",\"color\":\"dark_green\",\"bold\":true}",Lore:["{\"text\":\"Valor: 1000\",\"color\":\"gray\",\"italic\":false,\"bold\":true}"]},minecraft:custom_data:{economiarpg:{type:"coin",id:"emerald_coin",currency:"emerald",value:1000}},rarity:"epic",CustomModelData:2} 1

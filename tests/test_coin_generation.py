@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import unittest
 import zipfile
 from pathlib import Path
@@ -31,10 +32,39 @@ class CoinGenerationTests(unittest.TestCase):
         definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
         command = MODULE.build_give_command(definitions["bronze_coin"], count=3, custom_model_data=1)
 
-        self.assertIn("give @p minecraft:copper_nugget[", command)
+        self.assertIn("give @p minecraft:copper_nugget{", command)
         self.assertIn("bronze_coin", command)
-        self.assertIn("custom_data=", command)
-        self.assertIn("custom_model_data=1", command)
+        self.assertIn("economiarpg", command)
+        self.assertIn("CustomModelData:1", command)
+
+    def test_build_coin_item_tag_includes_loot_and_display_components(self):
+        definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
+        item_tag = MODULE.build_coin_item_tag(definitions["bronze_coin"], custom_model_data=1)
+
+        self.assertIn("minecraft:custom_data:{economiarpg:{type:\"coin\",id:\"bronze_coin\",currency:\"bronze\",value:1}}", item_tag)
+        self.assertIn("CustomModelData:1", item_tag)
+        self.assertIn("display:{Name:'{\"text\":\"Moneda de bronce\",\"color\":\"red\",\"bold\":true}',Lore:[", item_tag)
+
+    def test_write_coin_comparison_function_writes_compare_flow(self):
+        definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
+        compare_path = ROOT / "data" / "economiarpg" / "function" / "compare_coin_items.mcfunction"
+        MODULE.write_coin_comparison_function(definitions, compare_path)
+
+        self.assertTrue(compare_path.exists())
+        content = compare_path.read_text(encoding="utf-8")
+        self.assertIn("loot give @p loot economiarpg:test_bronze_coin", content)
+        self.assertIn("give @p minecraft:copper_nugget", content)
+        self.assertIn("/data get entity @p SelectedItem", content)
+
+    def test_write_coin_test_loot_table_creates_loot_table_file(self):
+        definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
+        test_loot_path = ROOT / "data" / "economiarpg" / "loot_tables" / "test_bronze_coin.json"
+        MODULE.write_coin_test_loot_table(definitions, test_loot_path)
+
+        self.assertTrue(test_loot_path.exists())
+        loot_contents = json.loads(test_loot_path.read_text(encoding="utf-8"))
+        self.assertEqual(len(loot_contents.get("pools", [])), 1)
+        self.assertEqual(loot_contents["pools"][0]["entries"][0]["name"], "minecraft:copper_nugget")
 
     def test_write_resource_pack_assets_uses_direct_texture_for_base_item_models(self):
         definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
@@ -44,8 +74,9 @@ class CoinGenerationTests(unittest.TestCase):
         self.assertTrue(copper_model_path.exists(), f"Expected override model at {copper_model_path}")
 
         copper_model = copper_model_path.read_text(encoding="utf-8")
-        self.assertIn('"layer0": "economiarpg:item/bronze_coin"', copper_model)
-        self.assertNotIn('"overrides"', copper_model)
+        self.assertIn('"layer0": "minecraft:item/copper_nugget"', copper_model)
+        self.assertIn('"overrides"', copper_model)
+        self.assertIn('"custom_model_data": 1', copper_model)
 
     def test_write_resource_pack_zip_contains_latest_generated_assets(self):
         definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
@@ -56,8 +87,11 @@ class CoinGenerationTests(unittest.TestCase):
             self.assertIn("assets/minecraft/models/item/copper_nugget.json", archive.namelist())
             self.assertIn("assets/economiarpg/textures/item/bronze_coin.png", archive.namelist())
             copper_model = archive.read("assets/minecraft/models/item/copper_nugget.json").decode("utf-8")
-
-        self.assertIn('"layer0": "economiarpg:item/bronze_coin"', copper_model)
+        # The zip should include the generated copper model with vanilla base texture
+        # and overrides that point to the economiarpg coin models.
+        self.assertIn('"layer0": "minecraft:item/copper_nugget"', copper_model)
+        self.assertIn('"overrides"', copper_model)
+        self.assertIn('"custom_model_data": 1', copper_model)
 
     def test_root_loot_table_path_uses_plural_directory(self):
         self.assertEqual(MODULE.ROOT_LOOT_TABLES.name, "entities")
