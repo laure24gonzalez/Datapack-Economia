@@ -143,9 +143,40 @@ def build_coin_components(coin_definition: dict, custom_model_data: int | None =
     return components
 
 
+def build_loot_components(coin_definition: dict, custom_model_data: int | None = None) -> dict:
+    lore_lines = coin_definition.get("lore") or [f"Valor: {coin_definition.get('value', 1)}"]
+    components = {
+        "minecraft:custom_name": {
+            "text": coin_definition.get("display_name", "Moneda"),
+            "color": coin_definition.get("color", "white"),
+            "bold": True,
+        },
+        "minecraft:lore": [
+            {
+                "text": line,
+                "color": "gray",
+                "italic": False,
+                "bold": True,
+            }
+            for line in lore_lines
+        ],
+        "minecraft:custom_data": {
+            "economiarpg": {
+                "type": "coin",
+                "id": coin_definition["id"],
+                "currency": coin_definition["currency"],
+                "value": coin_definition["value"],
+            }
+        },
+        "minecraft:rarity": coin_definition.get("rarity", "common"),
+    }
+    if custom_model_data is not None:
+        components["minecraft:custom_model_data"] = custom_model_data
+    return components
+
+
 def build_coin_pool(coin_definition: dict, coin_count: int, custom_model_data: int | None = None) -> dict:
-    components = build_coin_components(coin_definition, custom_model_data=custom_model_data)
-    nbt_tag = build_coin_nbt_tag(components)
+    loot_components = build_loot_components(coin_definition, custom_model_data=custom_model_data)
     return {
         "rolls": 1.0,
         "bonus_rolls": 0.0,
@@ -155,7 +186,7 @@ def build_coin_pool(coin_definition: dict, coin_count: int, custom_model_data: i
                 "name": coin_definition["item"],
                 "functions": [
                     {"function": "minecraft:set_count", "count": coin_count},
-                    {"function": "minecraft:set_nbt", "tag": nbt_tag},
+                    {"function": "minecraft:set_components", "components": loot_components},
                 ],
             }
         ],
@@ -173,7 +204,11 @@ def _format_json_string_for_snbt(data: dict) -> str:
 
 def _snbt_value(value: object) -> str:
     if isinstance(value, str):
-        return '"' + value.replace('"', '\\"') + '"'
+        escaped = value.replace('\\', '\\\\').replace('"', '\\"')
+        if value.startswith("{") or value.startswith("["):
+            escaped = escaped.replace("'", "\\'")
+            return "'" + escaped + "'"
+        return '"' + escaped + '"'
     if isinstance(value, bool):
         return "true" if value else "false"
     if isinstance(value, (int, float)):
@@ -246,6 +281,7 @@ def write_coin_test_loot_table(coin_definitions: dict, output_path: Path) -> Non
         raise KeyError("Missing coin definition for bronze_coin")
     model_data_map = build_model_data_map(coin_definitions)
     loot_table = {
+        "type": "minecraft:generic",
         "pools": [
             build_coin_pool(bronze_coin, coin_count=1, custom_model_data=model_data_map[bronze_coin["id"]])
         ]
@@ -343,7 +379,7 @@ def write_resource_pack_assets(coin_definitions: dict) -> None:
         base_model_path.write_text(json.dumps(base_model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def write_resource_pack_zip(assets_dir: Path, output_zip: Path) -> None:
+def write_resource_pack_zip(assets_dir: Path, output_zip: Path, pack_mcmeta_path: Path | None = None) -> None:
     output_zip.parent.mkdir(parents=True, exist_ok=True)
     manifest = {
         "pack": {
@@ -351,6 +387,8 @@ def write_resource_pack_zip(assets_dir: Path, output_zip: Path) -> None:
             "description": "EconomiaRPG",
         }
     }
+    if pack_mcmeta_path is not None and pack_mcmeta_path.exists():
+        manifest = json.loads(pack_mcmeta_path.read_text(encoding="utf-8"))
 
     with zipfile.ZipFile(output_zip, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         for path in sorted(assets_dir.rglob("*")):
@@ -377,16 +415,19 @@ def is_coin_pool(pool: dict) -> bool:
 
 def upsert_coin_pool(data: dict, coin_pool: dict) -> None:
     pools = data.get("pools", [])
-    replaced = False
     updated_pools = []
+    replaced = False
+
     for pool in pools:
         if not replaced and is_coin_pool(pool):
             updated_pools.append(coin_pool)
             replaced = True
         else:
             updated_pools.append(pool)
+
     if not replaced:
         updated_pools.append(coin_pool)
+
     data["pools"] = updated_pools
 
 
@@ -403,6 +444,10 @@ def apply_coin_pools(coin_definitions: dict, output_dir: Path, jar_path: str) ->
             internal = f"data/minecraft/loot_table/entities/{Path(filename).stem}.json"
             if internal not in z.namelist():
                 internal = f"data/minecraft/loot_table/entities/{filename}"
+            if internal not in z.namelist():
+                internal = f"data/minecraft/loot_tables/entities/{Path(filename).stem}.json"
+            if internal not in z.namelist():
+                internal = f"data/minecraft/loot_tables/entities/{filename}"
             if internal not in z.namelist():
                 print(f"SKIP {filename}: no vanilla loot table found")
                 continue

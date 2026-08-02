@@ -55,7 +55,7 @@ Pasos recomendados:
 ## 7. Revisar los archivos generados
 Rutas útiles:
 - [data/minecraft/loot_table/entities](data/minecraft/loot_table/entities)
-- [data/economiarpg/function/generated_coin_commands.mcfunction](data/economiarpg/function/generated_coin_commands.mcfunction)
+- [data/economiarpg/functions/generated_coin_commands.mcfunction](data/economiarpg/functions/generated_coin_commands.mcfunction)
 - [resource_pack.zip](resource_pack.zip)
 - [assets/economiarpg/textures/item](assets/economiarpg/textures/item)
 

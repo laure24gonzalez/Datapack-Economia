@@ -1,1 +1,0 @@
-summon minecraft:villager ~ ~ ~ {Invulnerable:1b,NoAI:1b,Silent:1b,PersistenceRequired:1b,CustomName:'{"text":"Herramientas Legendarias","color":"gold","bold":true}',CustomNameVisible:1b,VillagerData:{profession:"minecraft:toolsmith",level:5,type:"minecraft:plains"},Offers:{Recipes:[]}}

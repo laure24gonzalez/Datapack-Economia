@@ -25,8 +25,13 @@ class CoinGenerationTests(unittest.TestCase):
         self.assertEqual(pool["entries"][0]["name"], "minecraft:copper_nugget")
         self.assertEqual(pool["entries"][0]["functions"][0]["function"], "minecraft:set_count")
         self.assertEqual(pool["entries"][0]["functions"][0]["count"], 3)
-        self.assertEqual(pool["entries"][0]["functions"][1]["function"], "minecraft:set_components")
-        self.assertIn("minecraft:custom_name", pool["entries"][0]["functions"][1]["components"])
+        self.assertIn("minecraft:set_components", [function["function"] for function in pool["entries"][0]["functions"]])
+        components_function = next(function for function in pool["entries"][0]["functions"] if function.get("function") == "minecraft:set_components")
+        components = components_function["components"]
+        self.assertIn("minecraft:custom_name", components)
+        self.assertIn("minecraft:lore", components)
+        self.assertIn("minecraft:custom_data", components)
+        self.assertIn("minecraft:rarity", components)
 
     def test_build_give_command_contains_coin_metadata(self):
         definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
@@ -37,13 +42,24 @@ class CoinGenerationTests(unittest.TestCase):
         self.assertIn("economiarpg", command)
         self.assertIn("CustomModelData:1", command)
 
+    def test_build_coin_pool_includes_component_metadata_for_loot(self):
+        definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
+        pool = MODULE.build_coin_pool(definitions["bronze_coin"], 2, custom_model_data=1)
+
+        function_names = [function.get("function") for function in pool["entries"][0]["functions"]]
+        self.assertIn("minecraft:set_components", function_names)
+
+        components_function = next(function for function in pool["entries"][0]["functions"] if function.get("function") == "minecraft:set_components")
+        self.assertEqual(components_function["components"]["minecraft:rarity"], "common")
+        self.assertIn("economiarpg", str(components_function["components"]["minecraft:custom_data"]))
+
     def test_build_coin_item_tag_includes_loot_and_display_components(self):
         definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
         item_tag = MODULE.build_coin_item_tag(definitions["bronze_coin"], custom_model_data=1)
 
         self.assertIn("minecraft:custom_data:{economiarpg:{type:\"coin\",id:\"bronze_coin\",currency:\"bronze\",value:1}}", item_tag)
         self.assertIn("CustomModelData:1", item_tag)
-        self.assertIn("display:{Name:'{\"text\":\"Moneda de bronce\",\"color\":\"red\",\"bold\":true}',Lore:[", item_tag)
+        self.assertIn("display:{Name:'{\\\"text\\\": \\\"Moneda de bronce\\\", \\\"color\\\": \\\"red\\\", \\\"bold\\\": true}',Lore:[", item_tag)
 
     def test_write_coin_comparison_function_writes_compare_flow(self):
         definitions = MODULE.load_coin_definitions(ROOT / "data" / "economiarpg" / "coins")
@@ -63,6 +79,7 @@ class CoinGenerationTests(unittest.TestCase):
 
         self.assertTrue(test_loot_path.exists())
         loot_contents = json.loads(test_loot_path.read_text(encoding="utf-8"))
+        self.assertEqual(loot_contents.get("type"), "minecraft:generic")
         self.assertEqual(len(loot_contents.get("pools", [])), 1)
         self.assertEqual(loot_contents["pools"][0]["entries"][0]["name"], "minecraft:copper_nugget")
 
@@ -93,8 +110,45 @@ class CoinGenerationTests(unittest.TestCase):
         self.assertIn('"overrides"', copper_model)
         self.assertIn('"custom_model_data": 1', copper_model)
 
-    def test_root_loot_table_path_uses_plural_directory(self):
+    def test_root_loot_table_path_uses_singular_directory(self):
         self.assertEqual(MODULE.ROOT_LOOT_TABLES.name, "entities")
+        self.assertEqual(MODULE.ROOT_LOOT_TABLES.parent.name, "loot_table")
+
+    def test_workspace_zombie_loot_table_contains_coin_entry(self):
+        zombie_loot_path = ROOT / "data" / "minecraft" / "loot_table" / "entities" / "zombie.json"
+        self.assertTrue(zombie_loot_path.exists(), f"Expected loot table at {zombie_loot_path}")
+
+        loot_contents = json.loads(zombie_loot_path.read_text(encoding="utf-8"))
+        coin_entry_names = [
+            entry.get("name")
+            for pool in loot_contents.get("pools", [])
+            for entry in pool.get("entries", [])
+        ]
+
+        self.assertIn("minecraft:copper_nugget", coin_entry_names)
+
+    def test_workspace_zombie_loot_table_uses_component_lore(self):
+        zombie_loot_path = ROOT / "data" / "minecraft" / "loot_table" / "entities" / "zombie.json"
+        loot_contents = json.loads(zombie_loot_path.read_text(encoding="utf-8"))
+
+        coin_entry = next(
+            entry
+            for pool in loot_contents.get("pools", [])
+            for entry in pool.get("entries", [])
+            if entry.get("name") == "minecraft:copper_nugget"
+        )
+
+        component_functions = [
+            fn for fn in coin_entry.get("functions", [])
+            if fn.get("function") == "minecraft:set_components"
+        ]
+        self.assertTrue(component_functions, "Expected a set_components function for the zombie coin entry")
+
+        components = component_functions[0].get("components", {})
+        self.assertIn("minecraft:custom_name", components)
+        self.assertIn("minecraft:lore", components)
+        self.assertIn("minecraft:custom_data", components)
+        self.assertIn("minecraft:rarity", components)
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,1 +1,0 @@
-summon minecraft:villager ~ ~ ~ {Invulnerable:1b,NoAI:1b,Silent:1b,PersistenceRequired:1b,CustomName:'{"text":"Herrero Legendario","color":"gold","bold":true}',CustomNameVisible:1b,VillagerData:{profession:"minecraft:armorer",level:5,type:"minecraft:plains"},Offers:{Recipes:[]}}

@@ -1,5 +1,0 @@
-# Generated shopkeeper spawns
-function economiarpg:custom_villagers/blacksmith_shop
-function economiarpg:custom_villagers/armorer_shop
-function economiarpg:custom_villagers/tools_shop
-function economiarpg:custom_villagers/utilities_shop

@@ -13,8 +13,8 @@ Se abandonó el sistema de wallet y los comandos simulados. La economía ahora s
 ### Estructura actual del datapack
 
 - data/minecraft/loot_table/entities/ : loot tables de mobs, sin modificar.
-- data/minecraft/tags/function/ : tags de carga y tick.
-- data/economiarpg/function/ : funciones mínimas de carga y prueba.
+- data/minecraft/tags/functions/ : tags de carga y tick.
+- data/economiarpg/functions/ : funciones mínimas de carga y prueba.
 - data/economiarpg/recipe/ : recetas de conversión entre monedas físicas.
 
 ### Objetos personalizados

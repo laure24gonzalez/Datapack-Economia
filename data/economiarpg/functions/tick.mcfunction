@@ -1,6 +1,5 @@
 # Tick principal del datapack.
-# Mantiene activas las funciones de soporte de Economía RPG.
-# No modifica los trades vanilla de los aldeanos normales.
-
-# Mantiene activa la base para aldeanos personalizados.
-function economiarpg:custom_villagers/shopkeeper_registry
+# El flujo de prueba de drops quedó desactivado para evitar spam.
+#
+# function economiarpg:debug/tick/death_check
+# function economiarpg:debug/tick/drop_once_when_tagged

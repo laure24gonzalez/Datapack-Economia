@@ -69,11 +69,6 @@
     {
       "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:killed_by_player"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -86,19 +81,6 @@
             {
               "function": "minecraft:set_components",
               "components": {
-                "minecraft:custom_name": {
-                  "text": "Moneda de bronce",
-                  "color": "red",
-                  "bold": true
-                },
-                "minecraft:lore": [
-                  {
-                    "text": "Valor: 1",
-                    "color": "gray",
-                    "italic": false,
-                    "bold": true
-                  }
-                ],
                 "minecraft:custom_data": {
                   "economiarpg": {
                     "type": "coin",
@@ -107,7 +89,6 @@
                     "value": 1
                   }
                 },
-                "minecraft:rarity": "common",
                 "minecraft:custom_model_data": 1
               }
             }

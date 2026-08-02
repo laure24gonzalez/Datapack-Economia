@@ -7,7 +7,7 @@ root = ROOT
 
 pack_mcmeta = {
     "pack": {
-        "pack_format": 94.1,
+        "pack_format": 75,
         "description": "EconomiaRPG",
     }
 }

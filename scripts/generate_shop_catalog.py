@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "data" / "economiarpg" / "shops" / "catalog.json"
-OUTPUT_PATH = ROOT / "data" / "economiarpg" / "function" / "villagers" / "shop_catalog_generated.mcfunction"
+OUTPUT_PATH = ROOT / "data" / "economiarpg" / "functions" / "villagers" / "shop_catalog_generated.mcfunction"
 
 with CATALOG_PATH.open(encoding="utf-8") as fh:
     catalog = json.load(fh)

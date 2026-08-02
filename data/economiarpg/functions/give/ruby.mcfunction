@@ -1,1 +1,0 @@
-give @p minecraft:copper_nugget{display:{Name:"{\"text\":\"Moneda de rubí\",\"color\":\"red\",\"bold\":true}",Lore:["{\"text\":\"Valor: 1000000\",\"color\":\"gray\",\"italic\":false,\"bold\":true}"]},minecraft:custom_data:{economiarpg:{type:"coin",id:"ruby_coin",currency:"ruby",value:1000000}},rarity:"legendary",CustomModelData:5} 1

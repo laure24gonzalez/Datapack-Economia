@@ -80,7 +80,7 @@ def find_json_errors():
 def check_random_sequence(mob='zombie.json'):
     jar_path = f'data/minecraft/loot_table/entities/{mob}'
     jar_text = read_jar(jar_path)
-    dp_file = DATA / 'minecraft' / 'loot_table' / 'entities' / mob
+    dp_file = DATA / 'minecraft' / 'loot_tables' / 'entities' / mob
     dp_text = None
     if dp_file.exists():
         dp_text = dp_file.read_text(encoding='utf-8')

@@ -1,1 +1,0 @@
-give @p minecraft:iron_nugget{display:{Name:"{\"text\":\"Moneda de plata\",\"color\":\"aqua\",\"bold\":true}",Lore:["{\"text\":\"Valor: 10\",\"color\":\"gray\",\"italic\":false,\"bold\":true}"]},minecraft:custom_data:{economiarpg:{type:"coin",id:"silver_coin",currency:"silver",value:10}},rarity:"rare",CustomModelData:7} 1
